@@ -1,0 +1,6 @@
+@EunigosApi_HostAddress = http://localhost:5204
+
+GET {{EunigosApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
