@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using EunigosApi.Repositories.IRepository;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,8 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog(); // Use Serilog as the logging provider
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddCors(options =>
 {
@@ -98,15 +103,15 @@ builder.Services.AddMediatR(
     typeof(GetListHandler<,>).Assembly,
     typeof(BaseDeleteHandler<>).Assembly
 );
-// Repositories
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 
 builder.Services
     .AddDeactivateHandlers()
     .AddDeleteHandlers()
     .AddListHandlers()
     .AddGetByIdHandlers();
+
+// Repositories
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

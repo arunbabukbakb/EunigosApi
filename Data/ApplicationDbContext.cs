@@ -4,11 +4,14 @@ using EunigosApi.Models.Entity;
 using EunigosApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Data;
 using System.Security.Cryptography;
 using EunigosApi.Models.Entity.TicketManagement;
 using EunigosApi.Models.Entity.EstimateManagement;
+using EunigosApi.Models.Entity.VehicleManagement;
+using EunigosApi.Models.Entity.VehicleServiceManagement;
+using EunigosApi.Models.Entity.RepairKitManagement;
+using EunigosApi.Models.Entity.PartManagement;
+using EunigosApi.Models.Entity.UserManagement;
 
 namespace EunigosApi.Data
 {
@@ -27,6 +30,28 @@ namespace EunigosApi.Data
         //Registrations
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<Estimate> Estimate { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<JobType> JobTypes { get; set; }
+        public DbSet<CustomerCategory> CustomerCategories { get; set; }
+        public DbSet<VehicleInventory> VehicleInventories { get; set; }
+        public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<FuelType> FuelTypes { get; set; }
+        public DbSet<RepairType> RepairTypes { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<VehicleModel> VehicleModels { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<VehicleInventoryItem> VehicleInventoryItems { get; set; }
+        public DbSet<ServiceItem> ServiceItems { get; set; }
+        public DbSet<ConsumableItem> ConsumableItems { get; set; }
+        public DbSet<OutsideWorkItem> OutsideWorkItems { get; set; }
+        public DbSet<TypesOfParts> TypesOfParts { get; set; }
+        public DbSet<SourceOfParts> SourceOfParts { get; set; }
+        public DbSet<ItemServices> ItemServices { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
 
         private const int SaltSize = 16;
